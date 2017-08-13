@@ -1,0 +1,50 @@
+
+
+  <!--  show table data -->
+<div *ngIf="shownTable" class="col-md-9 horizontal-scroll" style="top: 80px;">
+  <table class="table my-table">
+    <thead>
+      <tr style="background-color: #343434; color: white;">
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Age</th>
+          <th style="text-align: center;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of datas">
+          <td>{{data.id}}</td>
+          <td>{{data.Name}}</td>
+          <td>{{data.Place}}</td>
+          <td>{{data.Age}}</td>
+          <td style="text-align: center;">
+            <!-- <input (click)="deleteData(data)" style="margin-left: 10px;" name="submit" id="submitme3" type="image" src="../../assets/images/remove.png" alt="Remove!" tabindex="8" width="21" height="22" /> -->
+            <input (click)="enableEditing(data)" name="submit" id="submitme4" type="image" src="../../assets/images/update.png" alt="Edit!" tabindex="8" width="20" height="20" />
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div class = "col-md-2 center-div" style="width: 487px;margin: 0px 0px;">
+  <div *ngIf="isEditing"> 
+    <h4 style="color:#222222;">Update Data</h4>
+      <form #form="ngForm" (ngSubmit)="editData(data)">
+        <div class="form-group">
+            <label for = "name">Name</label>
+            <input class="form-control" type="text" name="Name" [(ngModel)]="data.Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for = "name">Place/Address</label>
+          <input class="form-control" type="text" name="Place" [(ngModel)]="data.Place" placeholder="Place" min="0">
+        </div>
+        <div class="form-group">
+          <label for = "name">Age</label>
+          <input class="form-control" type="number" name="Age" [(ngModel)]="data.Age" placeholder="Age" step="any" min="0">
+        </div>
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" style="color: #fff;background-color: #343434;border-color: #333333;"><i class="fa fa-floppy-o"></i> Update</button>
+      </form>
+  </div>
+</div>
+
+     

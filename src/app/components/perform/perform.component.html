@@ -1,0 +1,78 @@
+
+  <br>
+  <div class="centered" style="margin: 70px 0px;">
+      <span class="icon-1"><input (click)="visibleForm()" [routerLink]="['/adduser']" name="submit" id="submitme" type="image" src="../../assets/images/add4.png" alt="Sign Me Up!" tabindex="8" width="60" height="58" /></span>
+      <span class="icon-2" style="margin-left:20px;"><input (click)="visibleData()" [routerLink]="['/viewdatas']" name="submit" id="submitme2" type="image" src="../../assets/images/view.png" alt="View Data!" tabindex="8" width="60" height="58" /></span>
+  </div>
+  <div class = "center-div" style="width: 487px;">
+      <div *ngIf="visibleAddUser">
+        <div *ngIf="!isEditing">
+          <h4 style="color:#222222;">Add new data</h4>
+            <form [formGroup]="addDataForm" (ngSubmit)="addData(datas)" >
+              <div class="form-group">
+                  <label for = "name">Name</label>
+                  <input class="form-control" type="text" name="Name" formControlName="Name" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for = "name">Place/Address</label>
+                <input class="form-control" type="text" name="Place" formControlName="Place" placeholder="Place" min="0">
+              </div>
+              <div class="form-group">
+                <label for = "name">Age</label>
+                <input class="form-control" type="number" name="Age" formControlName="Age" placeholder="Age" step="any" min="0">
+              </div>
+              <button class="btn btn-success" type="submit" [disabled]="!addDataForm.valid" style="color: #fff;background-color: #343434;border-color: #333333;"><i class="fa fa-floppy-o"></i> Add User</button>
+            </form>
+        
+        </div>
+      </div>
+  </div>
+
+  <!--  show table data -->
+<div *ngIf="shownTable" class="col-md-9 horizontal-scroll" style="top: 0px;">
+  <table class="table my-table">
+    <thead>
+      <tr style="background-color: #343434; color: white;">
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Age</th>
+          <th style="text-align: center;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of datas">
+          <td>{{data.id}}</td>
+          <td>{{data.Name}}</td>
+          <td>{{data.Place}}</td>
+          <td>{{data.Age}}</td>
+          <td style="text-align: center;">
+            <input (click)="deleteData(data)" style="margin-left: 10px;" name="submit" id="submitme3" type="image" src="../../assets/images/remove.png" alt="Remove!" tabindex="8" width="21" height="22" />
+            <input (click)="enableEditing(data)" name="submit" id="submitme4" type="image" src="../../assets/images/update.png" alt="Edit!" tabindex="8" width="20" height="20" />
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div class = "col-md-2" style="width: 487px;margin: 11px 220px;">
+  <div *ngIf="isEditing"> 
+    <h4 style="color:#222222;">Update Data</h4>
+      <form #form="ngForm" (ngSubmit)="editData(data)">
+        <div class="form-group">
+            <label for = "name">Name</label>
+            <input class="form-control" type="text" name="Name" [(ngModel)]="data.Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for = "name">Place/Address</label>
+          <input class="form-control" type="text" name="Place" [(ngModel)]="data.Place" placeholder="Place" min="0">
+        </div>
+        <div class="form-group">
+          <label for = "name">Age</label>
+          <input class="form-control" type="number" name="Age" [(ngModel)]="data.Age" placeholder="Age" step="any" min="0">
+        </div>
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" style="color: #fff;background-color: #343434;border-color: #333333;"><i class="fa fa-floppy-o"></i> Update</button>
+      </form>
+  </div>
+</div>
+
+     

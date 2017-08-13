@@ -1,0 +1,27 @@
+
+<div class="col-md-9 horizontal-scroll" style="top: 35px;">
+    <h1>User Details</h1>
+  <table class="table my-table">
+    <thead>
+      <tr style="background-color: #484848;; color: white;">
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Age</th>
+          <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of datas">
+          <td>{{data.id}}</td>
+          <td>{{data.Name}}</td>
+          <td>{{data.Place}}</td>
+          <td>{{data.Age}}</td>
+          <!-- <td>
+            <input (click)="deleteData(data)" style="margin-left: 10px;" name="submit" id="submitme3" type="image" src="../../assets/images/remove.png" alt="Remove!" tabindex="8" width="21" height="22" />
+            <input (click)="enableEditing(data)" name="submit" id="submitme4" type="image" src="../../assets/images/update.png" alt="Remove!" tabindex="8" width="20" height="20" />
+          </td> -->
+        </tr>
+    </tbody>
+  </table>
+</div>

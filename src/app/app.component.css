@@ -1,0 +1,10 @@
+.message {
+    top: 54px;
+    left: 915px;
+    position: fixed;
+    z-index: 888;
+    float: right;
+    width: 450px;
+
+}
+
